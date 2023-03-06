@@ -1,5 +1,6 @@
 import "./globals.css";
 import SessionProvider from "@/app/components/sessionProvider";
+import QueryWrapper from "./components/queryWrapper";
 
 export const metadata = {
 	title: "Create Next App",
@@ -15,7 +16,9 @@ export default function RootLayout({
 		<html lang="en" data-theme="forest">
 			<body>
 				<div className="prose w-full max-w-none">
-					<SessionProvider>{children}</SessionProvider>
+					<SessionProvider>
+						<QueryWrapper>{children}</QueryWrapper>
+					</SessionProvider>
 				</div>
 			</body>
 		</html>
