@@ -7,7 +7,7 @@ async function Navigation() {
 		<div className="navbar bg-base-100">
 			<div className="flex-1">
 				<a className="btn btn-ghost normal-case text-xl no-underline">
-					Lead Gen
+					Lead Gen App
 				</a>
 			</div>
 			<div className="flex-none">
