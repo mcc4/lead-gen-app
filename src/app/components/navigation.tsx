@@ -1,5 +1,6 @@
 import { asyncComponent } from "@/utils/asyncfix";
 import { getServerSession } from "next-auth";
+import SignOut from "./signout";
 
 async function Navigation() {
 	const session = await getServerSession();
@@ -38,7 +39,7 @@ async function Navigation() {
 							<a>Settings</a>
 						</li>
 						<li>
-							<a>Logout</a>
+							<SignOut />
 						</li>
 					</ul>
 				</div>
