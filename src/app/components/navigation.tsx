@@ -1,15 +1,19 @@
 import { asyncComponent } from "@/utils/asyncfix";
 import { getServerSession } from "next-auth";
-import SignOut from "./signout";
+import Link from "next/link";
+import Signout from "./signout";
 
 async function Navigation() {
 	const session = await getServerSession();
 	return (
-		<div className="navbar bg-base-100">
+		<div className="shadow navbar bg-base-100">
 			<div className="flex-1">
-				<a className="btn btn-ghost normal-case text-xl no-underline">
-					Lead Gen App
-				</a>
+				<Link
+					href="/"
+					className="text-xl no-underline normal-case btn btn-ghost"
+				>
+					Lead Generation
+				</Link>
 			</div>
 			<div className="flex-none">
 				<div className="dropdown dropdown-end">
@@ -18,28 +22,15 @@ async function Navigation() {
 						className="btn btn-ghost btn-circle avatar"
 					>
 						<div className="w-10 rounded-full">
-							<img
-								alt="avatar"
-								className="m-0"
-								src={session?.user?.image ?? ""}
-							/>
+							<img src={session?.user?.image ?? ""} />
 						</div>
 					</label>
 					<ul
 						tabIndex={0}
-						className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+						className="p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
 					>
 						<li>
-							<a className="justify-between">
-								Profile
-								<span className="badge">New</span>
-							</a>
-						</li>
-						<li>
-							<a>Settings</a>
-						</li>
-						<li>
-							<SignOut />
+							<Signout />
 						</li>
 					</ul>
 				</div>
