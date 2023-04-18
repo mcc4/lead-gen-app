@@ -1,6 +1,8 @@
 import { getLeadDetailsById } from "@/server/leads";
 import Link from "next/link";
 import NewNote from "./newNote";
+import DeleteNote from "./deleteNote";
+import { EditModal } from "@/app/components/leadForm";
 
 export default async function LeadPage({
 	params,
@@ -21,7 +23,8 @@ export default async function LeadPage({
 	return (
 		<div className="flex flex-row items-stretch w-full h-full">
 			<div className="flex flex-col w-2/3 p-8 overflow-y-auto lg:w-3/4">
-				<div className="max-w-lg p-4 mx-auto shadow card bg-base-200 w-fit">
+				<div className="relative max-w-lg p-4 mx-auto shadow card bg-base-200 w-fit">
+					<EditModal details={details} />
 					<h2>{details.name}</h2>
 					<p className="text-break">Email: {details.email}</p>
 					<p>Phone: {details.phone}</p>
@@ -32,7 +35,17 @@ export default async function LeadPage({
 				<h3>Lead Notes</h3>
 				<NewNote leadId={details.id} />
 				<hr className="my-5" />
-				{JSON.stringify(details.notes)}
+				{details.notes.map((note) => (
+					<div key={note.id} className="p-3 mb-3 card bg-base-200">
+						<DeleteNote noteId={note.id} leadId={params.leadId} />
+						<p>{note.content}</p>
+						<p>
+							{new Intl.DateTimeFormat("en-US").format(
+								note.createdAt
+							)}
+						</p>
+					</div>
+				))}
 			</div>
 		</div>
 	);
